@@ -1,0 +1,12 @@
+{
+  "resourceName": "s3leckerlogstorage4eadd5c0",
+  "bucketName": "leckerlog-storage-4eadd5c0",
+  "policyUUID": "b688b0b4",
+  "storageAccess": "auth",
+  "guestAccess": [],
+  "authAccess": [
+    "CREATE_AND_UPDATE",
+    "READ",
+    "DELETE"
+  ]
+}

@@ -1,0 +1,28 @@
+type CUISINES @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  name: String!
+  FOODS_CUISINES: [FOODS] @hasMany(indexName: "byCUISINES", fields: ["id"])
+  RESTAURANTS_FOODS: [RESTAURANTS] @hasMany(indexName: "byCUISINES", fields: ["id"])
+}
+
+type FOODS @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  name: String!
+  rating: Int!
+  comment: String
+  tags: [String]
+  image_path: String
+  cuisinesID: ID! @index(name: "byCUISINES")
+  restaurantss: [RESTAURANTS] @manyToMany(relationName: "RESTAURANTSFOODS")
+}
+
+type RESTAURANTS @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  name: String
+  date_created: AWSTimestamp
+  date_updated: AWSTimestamp
+  user_id: String
+  address: String
+  cuisinesID: ID! @index(name: "byCUISINES")
+  FOODS_RESTAURANTS: [FOODS] @manyToMany(relationName: "RESTAURANTSFOODS")
+} 
